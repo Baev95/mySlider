@@ -1,0 +1,245 @@
+/*Общие настройки */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: #EDEEF0;
+}
+
+h1,
+h3 {
+    font-size: 30px;
+    text-align: center;
+    margin: 10px;
+}
+
+h3 {
+    margin: 5px auto;
+}
+
+.description {
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li:before {
+    content: "✓";
+    position: relative;
+    right: 2px;
+}
+
+
+/* Слайдер */
+
+
+/* Стиль оболочки слайдера */
+
+
+.wrapper-arrow-image {
+    position: relative;
+    width: 680px;
+    margin: 50px auto 0px auto;
+}
+
+
+/* Стиль блока с картинками */
+
+
+.slider-images {
+    background-color: #F5F5F5;
+    width: 680px;
+    height: 380px;
+    padding: 30px;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px grey;
+}
+
+.slider-images_item {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-size: cover;
+    width: 650px;
+    height: 350px;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+}
+
+.slider-images_item.active {
+    opacity: 1;
+}
+
+
+/*  Стиль кнопок "Назад", "Вперед" */
+
+
+.slider-switch {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}
+
+.slider-switch_item {
+    width: 120px;
+    height: 45px;
+    border: 0;
+    border-bottom: 5px solid black;
+    background-color: #00BFFF;
+    margin-top: 30px;
+    border-radius: 30px;
+    font-size: medium;
+    padding: 10px 26px 10px 26px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.slider-switch_item:active {
+    border: 1.3px solid black;
+    background: linear-gradient(to bottom, #00BFFF, #87CEFA);
+}
+
+.slider-switch_item:hover {
+    background-color: #87CEFA;
+}
+
+
+/* Стиль стрелок "Назад" и "Вперед" */
+
+
+.slider-arrow {
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-arrow_item:hover {
+    background-color: black;
+    opacity: 0.4;
+    transition: opacity 200ms ease;
+    border-radius: 0 20px 20px 0;
+
+}
+
+.slider-arrow_item.left:hover {
+    border-radius: 20px 0 0 20px;
+}
+
+.slider-arrow_item {
+    color: #EDEEF0;
+    padding: 133px 0 132px 0;
+    opacity: 0;
+    width: 13%;
+    font-size: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/* Стиль точек пагинации */
+
+
+.slider-dots {
+    position: absolute;
+    bottom: -55px;
+    display: flex;
+    left: 268px;
+}
+
+.slider-dots_item {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #00BFFF;
+    margin: 0px 5px;
+    opacity: .5;
+    transition: background-color 500ms ease;
+    cursor: pointer;
+}
+
+.slider-dots_item.active {
+    background-color: #002137;
+    opacity: 1;
+}
+
+.slider-dots_item:hover {
+    background-color: #002137;
+    opacity: .8;
+    transition: background-color 500ms ease;
+}
+
+
+/* Стиль кнопки запускающей рандомную картинку */
+
+
+.randomImage {
+    position: absolute;
+    height: 50px;
+    width: 100px;
+    top: 15px;
+    z-index: 1;
+    left: 42%;
+    border: 1px solid lightblue;
+    background: linear-gradient(to bottom, #48aecf, #a0bdcf);
+    border-radius: 45% 45% 45% 45%;
+    transition: border-radius 500ms ease;
+    transition: opacity 500ms ease-in-out;
+    cursor: pointer;
+    opacity: 0.5;
+    color: white;
+}
+
+.randomImage:active {
+    border-radius: 100% 100% 100% 100%;
+    transition: border-radius 1200ms ease;
+    opacity: 0.5;
+    background: none;
+}
+
+.randomImage:hover {
+    border-radius: 100% 100% 100% 100%;
+    transition: border-radius 1200ms ease;
+    opacity: 0.7;
+}
+
+
+/* Стиль заголовков изображений */
+
+
+.slider-images_title {
+    font-weight: 500;
+    text-align: center;
+    position: absolute;
+    font-size: large;
+    bottom: 15px;
+    background: linear-gradient(to bottom, #0ab1e9, #94d5fd);
+    left: 15px;
+    align-items: center;
+    align-content: center;
+    width: 650px;
+    height: 45px;
+    box-shadow: 0 0 20px #555;
+    opacity: 0.9;
+    border-radius: 40px 40px 0px 0px;
+}
+
+.red{
+    color: red;
+}

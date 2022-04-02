@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Слайдер</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Слайдер на JS</h1>
+    </header>
+    <main>
+        <section class="description">
+            <div>
+                <p>Реализуйте слайдер для фото, исходя из требований ниже.</p>
+                <ul>
+                    <li>Должна быть возможность пролистывать фото. Например, добавить 2 кнопки вперед и назад
+                        (предыдущее, следующее и так далее);</li>
+                    <li>При клике «назад» на первом фото должно открыватьсяпоследнее. При клике «вперед» на последнем
+                        фото должно открываться первое;</li>
+                    <li>Блок, в котором располагаются изображения, не должен меняться под размер картинок;</li>
+                    <li>Добавить анимацию при переключении фото;</li>
+                    <li>На входе — массив изображений. Их может быть любое количество. Нельзя завязываться на порядковый
+                        номер элемента;</li>
+                    <li>Картинки можно положить в папку asset. Либо использовать стороннее API, сделав GET запрос для
+                        получения изображений;</li>
+                    <li>Соблюдать семантическую верстку;</li>
+                    <li>Использовать селекторы по тегу для задания стилей нельзя. Использовать классы. В случае, когда
+                        есть необходимость — селектор по id;</li>
+                    <li>Дизайн произвольный. Минимум — застилизовать кнопки (добавить hover) и обеспечить для них
+                        accessibility: переключение по tab, outline, cursor.</li>
+                </ul>
+            </div>
+        </section>
+        <!-- !There will be a slider-->
+        <h3 class="super-h3"></h3>
+        <section class="mySlider">
+            <div class="wrapper-arrow-image">
+                <div class="slider-images"> </div>
+                <button class='randomImage'>Рандомная картинка</button>
+
+                <div class="slider-arrow">
+
+                    <div class="slider-arrow_item left">&#60</div>
+                    <div class="slider-arrow_item"> &#62</div>
+                </div>
+                <div class="slider-dots"></div>
+            </div>
+
+            <div class="slider-switch">
+                <button class="slider-switch_item left">Назад</button>
+                <button class="slider-switch_item">Вперед</button>
+            </div>
+
+        </section>
+        <div class="red"></div>
+        <div class="red"></div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="modulImages.js"></script>
+</body>
+
+</html>
