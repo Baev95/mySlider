@@ -6,11 +6,7 @@ const options = {
 	dotsImage: true,
 	titleImage: true,
 	autoPlayLoop: true,
-	timeAutoPlay: 7000,
-	content: function () {
-		button = true;
-		text = true;
-	}
+	timeAutoPlay: 5000,
 };
 
 export default options;

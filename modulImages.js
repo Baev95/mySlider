@@ -6,7 +6,7 @@ let titleH3 = document.querySelector('.super-h3');
 titleH3.innerHTML += `${imagesNature.length} красивейших мест на планете`;
 
 function mySlider(options) {
-    console.log(imagesNature)
+
     if (!imagesNature && !imagesNature.length) return;
 
     options = options || {
@@ -23,36 +23,37 @@ function mySlider(options) {
     const sliderSwitch = document.querySelector('.slider-switch');
     const sliderDots = document.querySelector('.slider-dots');
     const ranBtmImages = document.querySelector('.randomImage');
-
+    let nIntervalValue = null;
     creatingImages();
 
-    if (options.switchSlider == true) {
-        switchSliderImages();
+    if (options.switchSlider) {
+        clickOnSwith(sliderSwitch, '.slider-switch_item');
     } else {
         sliderSwitch.style.display = 'none';
     }
 
-    if (options.arrowSlider == true) {
-        arrowSliderImages();
+    if (options.arrowSlider) {
+        clickOnSwith(sliderArrow, '.slider-arrow_item');;
     } else {
         sliderArrow.style.display = 'none';
     }
 
 
-    if (options.randomImage == true) {
+    if (options.randomImage) {
         buttonOnRandomImage()
     } else {
         ranBtmImages.style.display = 'none';
     }
 
-    if (options.titleImage == true) {
+    if (options.titleImage) {
         titleImagesSlider()
     }
 
-    if (options.autoPlayLoop == true) {
-        autoPlay()
+    if (options.autoPlayLoop) {
+        onAutoPlay()
     }
-    if (options.dotsImage == true) {
+
+    if (options.dotsImage) {
         sliderDotsImages()
     }
 
@@ -64,40 +65,24 @@ function mySlider(options) {
         })
     }
 
-    function switchSliderImages() {
-        sliderSwitch.querySelectorAll('.slider-switch_item').forEach((switchImage) => {
-            switchImage.addEventListener('click', function () {
+    function clickOnSwith(item, classParametr) {
+        item.querySelectorAll(classParametr).forEach((value) => {
+            value.addEventListener('click', function () {
+                offAutoPlay()
                 let currentNumber = +sliderImages.querySelector('.active').dataset.index;
                 let nextNumber;
-                if (switchImage.classList.contains('left')) {
-                    if (options.autoLoop == true) { nextNumber = currentNumber === 0 ? imagesNature.length - 1 : currentNumber - 1; }
+                if (value.classList.contains('left')) {
+                    if (options.autoLoop) { nextNumber = currentNumber === 0 ? imagesNature.length - 1 : currentNumber - 1; }
                     else { nextNumber = currentNumber === 0 ? 0 : currentNumber - 1; }
                 } else {
-                    if (options.autoLoop == true) { nextNumber = currentNumber === imagesNature.length - 1 ? 0 : currentNumber + 1; }
+                    if (options.autoLoop) { nextNumber = currentNumber === imagesNature.length - 1 ? 0 : currentNumber + 1; }
                     else { nextNumber = currentNumber === imagesNature.length - 1 ? imagesNature.length - 1 : currentNumber + 1; }
                 }
                 slideMovement(nextNumber);
+                onAutoPlay()
             })
         })
     }
-
-    function arrowSliderImages() {
-        sliderArrow.querySelectorAll('.slider-arrow_item').forEach((arrowImage) => {
-            arrowImage.addEventListener('click', function () {
-                let currentNumber = +sliderImages.querySelector('.active').dataset.index;
-                let nextNumber;
-                if (arrowImage.classList.contains('left')) {
-                    if (options.autoLoop == true) { nextNumber = currentNumber === 0 ? imagesNature.length - 1 : currentNumber - 1; }
-                    else { nextNumber = currentNumber === 0 ? 0 : currentNumber - 1; }
-                } else {
-                    if (options.autoLoop == true) { nextNumber = currentNumber === imagesNature.length - 1 ? 0 : currentNumber + 1; }
-                    else { nextNumber = currentNumber === imagesNature.length - 1 ? imagesNature.length - 1 : currentNumber + 1; }
-                }
-                slideMovement(nextNumber);
-            })
-        })
-    }
-
 
     function sliderDotsImages() {
         imagesNature.forEach((image, index) => {
@@ -107,20 +92,23 @@ function mySlider(options) {
         })
         sliderDots.querySelectorAll('.slider-dots_item').forEach((dot) => {
             dot.addEventListener('click', function () {
-                slideMovement(this.dataset.index)
+                offAutoPlay();
+                slideMovement(this.dataset.index);
+                onAutoPlay();
             })
         })
 
     }
 
     function buttonOnRandomImage() {
-
         ranBtmImages.addEventListener('click', function () {
+            offAutoPlay();
             let nextNumber = Math.ceil(Math.random() * imagesNature.length - 1)
             while (nextNumber == sliderImages.querySelector('.active').dataset.index) {
                 nextNumber = Math.ceil(Math.random() * imagesNature.length - 1);
             }
             slideMovement(nextNumber)
+            onAutoPlay();
         })
     }
 
@@ -153,14 +141,23 @@ function mySlider(options) {
         changeTitle(nextNumber)
     }
 
-    function autoPlay() {
-        setInterval(() => {
-            let currentNumber = +sliderImages.querySelector('.active').dataset.index;
-            let nextNumber;
-            nextNumber = currentNumber === imagesNature.length - 1 ? 0 : currentNumber + 1;
-            slideMovement(nextNumber)
-        }, options.timeAutoPlay)
+    function offAutoPlay() {
+        clearInterval(nIntervalValue);
+        nIntervalValue = null;
     }
+
+    function onAutoPlay() {
+        if (!nIntervalValue) {
+            nIntervalValue = setInterval(autoPlay, options.timeAutoPlay);
+        }
+    }
+
+    function autoPlay() {
+        let currentNumber = +sliderImages.querySelector('.active').dataset.index;
+        let nextNumber;
+        nextNumber = currentNumber === imagesNature.length - 1 ? 0 : currentNumber + 1;
+        slideMovement(nextNumber)
+    };
 }
 
 
